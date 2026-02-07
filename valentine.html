@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💖</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hearts-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .heart-float {
+            position: absolute;
+            bottom: -50px;
+            font-size: 30px;
+            animation: float-up 8s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 60px 40px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 90%;
+            position: relative;
+            z-index: 1;
+        }
+
+        .question-screen, .yes-screen {
+            display: none;
+        }
+
+        .question-screen.active, .yes-screen.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        h1 {
+            color: #e74c3c;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .gif-container {
+            margin: 30px 0;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gif-container img {
+            max-width: 100%;
+            max-height: 200px;
+            border-radius: 15px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 40px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background: #e74c3c;
+            color: white;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+        }
+
+        #yesBtn:hover {
+            background: #c0392b;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background: #95a5a6;
+            color: white;
+            position: relative;
+        }
+
+        #noBtn:hover {
+            background: #7f8c8d;
+        }
+
+        .celebration {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+
+        .yes-message {
+            font-size: 1.3em;
+            color: #2c3e50;
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            z-index: 999;
+            animation: confetti-fall 3s linear;
+        }
+
+        @keyframes confetti-fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts-background" id="heartsContainer"></div>
+    
+    <div class="container">
+        <!-- Question Screen -->
+        <div class="question-screen active" id="questionScreen">
+            <h1>Will You Be My Valentine? 💝</h1>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWR5eGF5ZzBzaXVyZjdudTBoaGt5eXN2MWNlNHg2aXhxOWFwNjBxYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif" alt="Cute asking" id="questionGif">
+            </div>
+            <div class="buttons">
+                <button id="yesBtn">Yes! 💕</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
+
+        <!-- Yes Screen -->
+        <div class="yes-screen" id="yesScreen">
+            <div class="celebration">🎉 💖 🎊</div>
+            <h1>Yay! I'm so happy! 💕</h1>
+            <div class="gif-container">
+                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExODRkYjJkZDZkM3JnNGVlajBycXNqcTlyMnBhcnV1ZXA0ZDllZGQwNiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/UMon0fuimoAN9ueUNP/giphy.gif" alt="Happy celebration">
+            </div>
+            <p class="yes-message">
+                This Valentine's Day is going to be amazing! ✨<br>
+                Can't wait to spend it with you! 💝
+            </p>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionScreen = document.getElementById('questionScreen');
+        const yesScreen = document.getElementById('yesScreen');
+        const questionGif = document.getElementById('questionGif');
+        
+        let noBtnSize = 1;
+        let yesBtnSize = 1;
+        let noClickCount = 0;
+
+        const sadGifs = [
+            'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcWR5eGF5ZzBzaXVyZjdudTBoaGt5eXN2MWNlNHg2aXhxOWFwNjBxYyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/MDJ9IbxxvDUQM/giphy.gif',
+            'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYjJ1ZWtsdWY3YTFpZGRhNDdiaWh2dGJjeGVxYjVvamttbjhyM2V3eiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L95W4wv8nnb9K/giphy.gif',
+            'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExYXJoNDd2Ym9pZDJuODhpbWh1ZG1wdnRmNWRpdWEwcWw5dGNhN2RpZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ISOckXUybVfQ4/giphy.gif'
+        ];
+
+        // Create floating hearts
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart-float';
+            heart.textContent = '💖';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 3 + 5) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+            document.getElementById('heartsContainer').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 8000);
+        }
+
+        setInterval(createFloatingHeart, 800);
+
+        // No button behavior
+        noBtn.addEventListener('click', function() {
+            noClickCount++;
+            
+            // Change gif to sadder ones
+            if (noClickCount < sadGifs.length) {
+                questionGif.src = sadGifs[noClickCount];
+            }
+            
+            // Shrink no button
+            noBtnSize *= 0.8;
+            noBtn.style.transform = `scale(${noBtnSize})`;
+            
+            // Grow yes button
+            yesBtnSize *= 1.2;
+            yesBtn.style.transform = `scale(${yesBtnSize})`;
+            
+            // Move no button randomly
+            const randomX = Math.random() * 200 - 100;
+            const randomY = Math.random() * 200 - 100;
+            
+            noBtn.style.position = 'relative';
+            noBtn.style.left = randomX + 'px';
+            noBtn.style.top = randomY + 'px';
+            
+            if (noBtnSize < 0.3) {
+                noBtn.style.display = 'none';
+            }
+        });
+
+        // Yes button behavior
+        yesBtn.addEventListener('click', function() {
+            questionScreen.classList.remove('active');
+            yesScreen.classList.add('active');
+            createConfetti();
+        });
+
+        // Create confetti
+        function createConfetti() {
+            const colors = ['#e74c3c', '#f39c12', '#3498db', '#2ecc71', '#9b59b6', '#e91e63'];
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+    </script>
+</body>
+</html>
